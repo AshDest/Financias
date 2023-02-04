@@ -5,11 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Taux extends Model
+class Vente extends Model
 {
     use HasFactory;
-
     protected $fillable = [
+        'montantUSD',
+        'montantCDF',
         'taux',
+        'caisse_id'
     ];
+    public function caisse()
+    {
+        return $this->belongsTo(Caisse::class);
+    }
 }

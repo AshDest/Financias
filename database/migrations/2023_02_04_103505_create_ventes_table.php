@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('caisses', function (Blueprint $table) {
+        Schema::create('ventes', function (Blueprint $table) {
             $table->id();
-            $table->string('compteUSD');
-            $table->string('compteCDF');
-            $table->double('montantCDF')->default('0');
             $table->double('montantUSD')->default('0');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->double('montantCDF')->default('0');
+            $table->double('taux');
+            $table->unsignedBigInteger('caisse_id');
+            $table->foreign('caisse_id')->references('id')->on('caisses')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('caisses');
+        Schema::dropIfExists('ventes');
     }
 };
