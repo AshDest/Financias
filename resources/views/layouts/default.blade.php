@@ -33,6 +33,7 @@
     <!-- START: Custom CSS-->
     <link rel="stylesheet" href="{{ asset('dist/css/main.css') }}">
     <!-- END: Custom CSS-->
+    @livewireStyles
 </head>
 <!-- END Head-->
 
@@ -109,6 +110,7 @@
     <!-- START: Page JS-->
     <script src="{{ asset('dist/js/home.script.js') }}"></script>
     <!-- END: Page JS-->
+    @livewireScripts
 </body>
 <!-- END: Body-->
 
