@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Pick Admin</title>
-    <link rel="shortcut icon" href="{{ asset('dist/images/favicon.ico') }}" />
+    <title>{{ config('app.name', 'Financias') }}</title>
+    <link rel="shortcut icon" href="{{ asset('dist/images/icons/winex.ico') }}" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <!-- START: Template CSS-->
@@ -42,9 +42,9 @@
 <body id="main-container" class="default">
 
     <!-- START: Pre Loader-->
-    <div class="se-pre-con">
+    {{-- <div class="se-pre-con">
         <div class="loader"></div>
-    </div>
+    </div> --}}
     <!-- END: Pre Loader-->
 
     <!-- START: Header-->
