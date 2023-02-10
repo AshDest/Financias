@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('caissiers', function (Blueprint $table) {
             $table->id();
+            $table->string('code')->nullable();
+            $table->string('nom')->nullable();
+            $table->string('postnom')->nullable();
+            $table->string('compteUSD');
+            $table->string('compteCDF');
+            $table->double('montantCDF')->default('0');
+            $table->double('montantUSD')->default('0');
             $table->timestamps();
         });
     }
