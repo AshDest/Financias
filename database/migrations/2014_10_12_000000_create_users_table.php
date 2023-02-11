@@ -20,8 +20,6 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('role')->default('0');
-            $table->unsignedBigInteger('caissier_id')->nullable();
-            $table->foreign('caissier_id')->references('id')->on('caissiers')->onDelete('cascade')->onUpdate('cascade');
             $table->rememberToken();
             $table->timestamps();
         });
