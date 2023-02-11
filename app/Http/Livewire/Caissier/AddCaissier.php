@@ -24,7 +24,7 @@ class AddCaissier extends Component
         'nom' => 'required',
         'postnom' => 'required',
         'montantCDF' => 'required',
-        'montantUSD' => 'required',
+        'montantUSD' => 'required|regex:/^\d+(\.\d{1,2})?$/',
     ];
     // realtime validation
     public function updated($propertyName)

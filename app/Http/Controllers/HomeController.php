@@ -30,4 +30,8 @@ class HomeController extends Controller
     {
         return view('pages.caissiers.list');
     }
+    public function addcaissier()
+    {
+        return view('pages.caissiers.add');
+    }
 }

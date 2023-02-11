@@ -34,7 +34,8 @@
                             </div>
                         </div>
                         <div class="col-3 my-auto">
-                            <a href="/saveclient" class="btn btn-outline-dark col-12"><i class="icon-plus"></i>
+                            <a href="{{ route('addcaissier') }}" class="btn btn-outline-dark col-12"><i
+                                    class="icon-plus"></i>
                                 &ensp;&ensp;Ajouter Nouveau Caissier</a>
                         </div>
                     </div>
