@@ -19,6 +19,8 @@ class AddCaissier extends Component
     public $montantCDF;
     public $montantUSD;
 
+    public $nbrCaissier;
+
     protected $rules = [
         'code' => 'required',
         'nom' => 'required',
@@ -35,13 +37,14 @@ class AddCaissier extends Component
     {
         $this->validate();
         // Validate Form Request
+        // dd($this->validate());
         try {
             Caissier::create([
                 'code' => $this->code,
                 'nom' => $this->nom,
                 'postnom' => $this->postnom,
-                'compteUSD' => $this->compteUSD,
-                'compteCDF' => $this->compteCDF,
+                'compteUSD' => '57.' . $this->nbrCaissier . '1',
+                'compteCDF' => '57.' .  $this->nbrCaissier . '2',
                 'montantCDF' => $this->montantCDF,
                 'montantUSD' => $this->montantUSD,
             ])->save();
@@ -52,14 +55,20 @@ class AddCaissier extends Component
             // ])->save();
             // Set Flash Message
             $this->alert('success', 'Initialisation successful');
-
-            return redirect()->to(route('listapprovisionnement'));
+            return redirect()->to(route('caissier'));
         } catch (\Exception $e) {
             // Set Flash Message
             $this->alert('warning', 'Echec d\'enregistrement: ' . $e->getMessage());
 
             // $this->reset_fields();
         }
+    }
+    public function mount()
+    {
+        $this->nbrCaissier = Caissier::count();
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $pin = mt_rand(1000, 9999) . $characters[rand(0, strlen('ABCDEFGHIJKLMNOPQRSTUVWXYZ') - 1)];
+        $this->code = 'C-' . str_shuffle($pin);
     }
     public function render()
     {

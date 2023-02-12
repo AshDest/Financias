@@ -1,4 +1,4 @@
-<div>
+<div class="container-fluid site-width">
     <div class="row">
         <div class="col-12 mt-3">
             <div class="card">
@@ -9,8 +9,19 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-                                <form class="needs-validation" novalidate>
+                                <form class="needs-validation" novalidate wire:submit.prevent="save">
                                     <div class="form-row">
+                                        <div class="col-md-4 mb-3">
+                                            <label for="code">Code Caissier</label>
+                                            <input type="text" wire:model='code'
+                                                class="form-control @error('code') is-invalid @enderror" id="code"
+                                                placeholder="First name" value="" required readonly>
+                                            @error('code')
+                                            <div class="invalid-feedback">
+                                                <i class="fas fa-exclamation-triangle"></i>&nbsp;{{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
                                         <div class="col-md-4 mb-3">
                                             <label for="nom">Nom</label>
                                             <input type="text" wire:model='nom'
@@ -46,7 +57,7 @@
                                             </div>
                                             @enderror
                                         </div>
-                                        <div class="col-md-3 mb-3">
+                                        <div class="col-md-6 mb-3">
                                             <label for="validationCustom04">Montant CDF</label>
                                             <input type="number" wire:model='montantCDF'
                                                 class="form-control @error('montantCDF') is-invalid @enderror"
@@ -59,7 +70,13 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary" type="submit">Enregistrer Caissier</button>
+                                    <div class="form-group col-sm-12">
+                                        <button type="submit" class="btn btn-primary col-12 col-sm-12 mt-3">
+                                            <i class="icon-plus"></i>&ensp;&ensp;Enregistrer Caissier
+                                        </button>
+                                    </div>
+                                    {{-- <button class="btn btn-primary" type="submit">Enregistrer Caissier</button>
+                                    --}}
                                 </form>
                             </div>
                         </div>
@@ -68,5 +85,4 @@
             </div>
         </div>
     </div>
-    <!-- END: Card DATA-->
 </div>
