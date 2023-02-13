@@ -23,3 +23,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/caissier', [App\Http\Controllers\HomeController::class, 'caissier'])->name('caissier');
 Route::get('/caissier/add', [App\Http\Controllers\HomeController::class, 'addcaissier'])->name('addcaissier');
+Route::get('/caissier/edit/{ids}', [App\Http\Controllers\HomeController::class, 'editcaissier'])->name('editcaissier');

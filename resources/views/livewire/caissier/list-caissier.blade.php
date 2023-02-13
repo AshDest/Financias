@@ -51,6 +51,7 @@
                                 <th scope="col">Compte CDF</th>
                                 <th scope="col">Montant USD</th>
                                 <th scope="col">Montant CDF</th>
+                                <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -69,6 +70,18 @@
                                 <td>{{$item->compteCDF}}</td>
                                 <td>{{number_format($item->montantUSD).' $'}}</td>
                                 <td>{{number_format($item->montantCDF).' FC'}}</td>
+                                <td width="10%">
+                                    <a href="{{ route('editcaissier', ['ids'=>$item->id]) }}"
+                                        class="badge outline-badge-dark" data-toggle="tooltip" data-placement="top"
+                                        title="Modifier Compte Caissier" style="cursor:pointer;">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    {{-- <span class="badge outline-badge-danger"
+                                        wire:click="alertsupr({{$client->id}})" data-toggle="tooltip"
+                                        data-placement="top" title="Supprimer Client" style="cursor:pointer;">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </span> --}}
+                                </td>
                             </tr>
                             @empty
                             <tr>

@@ -34,4 +34,8 @@ class HomeController extends Controller
     {
         return view('pages.caissiers.add');
     }
+    public function editcaissier($ids)
+    {
+        return view('pages.caissiers.edit', compact('ids'));
+    }
 }
