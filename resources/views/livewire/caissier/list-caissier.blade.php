@@ -16,7 +16,7 @@
                                 </div>
                                 <input class="form-control form-control-sm" id="search"
                                     style="background-color: #f7f9fa; " placeholder=" Recherche par motif "
-                                    wire:model="search" />
+                                    wire:model="reseach" />
                             </div>
                         </div>
                         <div class="col-2 my-auto">
@@ -64,12 +64,11 @@
                                     $i++;
                                     @endphp</th>
                                 <td>{{$item->code}}</td>
-                                <td>{{$item->nom}}</td>
-                                <td>{{$item->postnom}}</td>
+                                <td>{{$item->nom}} - {{$item->postnom}}</td>
                                 <td>{{$item->compteUSD}}</td>
                                 <td>{{$item->compteCDF}}</td>
-                                <td>{{$item->montantCDF}}</td>
-                                <td>{{$item->montantUSD}}</td>
+                                <td>{{number_format($item->montantUSD).' $'}}</td>
+                                <td>{{number_format($item->montantCDF).' FC'}}</td>
                             </tr>
                             @empty
                             <tr>

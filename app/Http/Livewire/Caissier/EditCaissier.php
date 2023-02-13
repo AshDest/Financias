@@ -7,7 +7,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
-class AddCaissier extends Component
+class EditCaissier extends Component
 {
     use WithPagination;
     use LivewireAlert;
@@ -19,10 +19,9 @@ class AddCaissier extends Component
     public $montantCDF;
     public $montantUSD;
 
-    public $nbrCaissier;
+    public $ids;
 
     protected $rules = [
-        'code' => 'required',
         'nom' => 'required',
         'postnom' => 'required',
         'montantCDF' => 'required',
@@ -33,38 +32,34 @@ class AddCaissier extends Component
     {
         $this->validateOnly($propertyName);
     }
-    public function save()
+    public function edit()
     {
         $this->validate();
-        // Validate Form Request
-        // dd($this->validate());
         try {
-            Caissier::create([
-                'code' => $this->code,
+            Caissier::find($this->ids)->fill([
                 'nom' => $this->nom,
                 'postnom' => $this->postnom,
-                'compteUSD' => '57.' . $this->nbrCaissier . '1',
-                'compteCDF' => '57.' .  $this->nbrCaissier . '2',
                 'montantCDF' => $this->montantCDF,
                 'montantUSD' => $this->montantUSD,
             ])->save();
-            $this->alert('success', 'Initialisation successful');
+            $this->alert('success', 'Compte modifier avec success');
             return redirect()->to(route('caissier'));
         } catch (\Exception $e) {
-            // Set Flash Message
             $this->alert('warning', 'Echec d\'enregistrement: ' . $e->getMessage());
-            // $this->reset_fields();
         }
     }
+
     public function mount()
     {
-        $this->nbrCaissier = Caissier::count();
-        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $pin = mt_rand(1000, 9999) . $characters[rand(0, strlen('ABCDEFGHIJKLMNOPQRSTUVWXYZ') - 1)];
-        $this->code = 'C-' . str_shuffle($pin);
+        $vars = Caissier::find($this->ids);
+        $this->code = $vars->code;
+        $this->nom = $vars->nom;
+        $this->postnom = $vars->postnom;
+        $this->montantCDF = $vars->montantCDF;
+        $this->montantUSD = $vars->montantUSD;
     }
     public function render()
     {
-        return view('livewire.caissier.add-caissier');
+        return view('livewire.caissier.edit-caissier');
     }
 }

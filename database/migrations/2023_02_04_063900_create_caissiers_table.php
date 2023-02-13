@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('postnom')->nullable();
             $table->string('compteUSD');
             $table->string('compteCDF');
-            $table->decimal('montantCDF', 8, 2)->default('0');
-            $table->decimal('montantUSD', 8, 2)->default('0');
+            $table->decimal('montantCDF', 10, 2)->default('0');
+            $table->decimal('montantUSD', 10, 2)->default('0');
             $table->timestamps();
         });
     }
