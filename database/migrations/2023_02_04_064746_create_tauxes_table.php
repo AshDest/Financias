@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('tauxes', function (Blueprint $table) {
             $table->id();
-            $table->double('taux');
+            $table->decimal('taux', 8, 2);
+            $table->enum('types', ['vente', 'achat']);
             $table->timestamps();
         });
     }

@@ -16,11 +16,11 @@
             </div>
             <div class="form-row">
                 <div class="col-md-6 mb-3">
-                    <label for="montantUSD">Montant USD</label>
-                    <input type="number" wire:model='montantUSD'
-                        class="form-control @error('montantUSD') is-invalid @enderror" id="montantUSD"
+                    <label for="montant_approvCDF">Montant USD</label>
+                    <input type="number" wire:model='montant_approvCDF'
+                        class="form-control @error('montant_approvCDF') is-invalid @enderror" id="montant_approvCDF"
                         placeholder="Montant en $" required>
-                    @error('montantUSD')
+                    @error('montant_approvCDF')
                     <div class="invalid-feedback">
                         <i class="fas fa-exclamation-triangle"></i>&nbsp;{{ $message }}
                     </div>

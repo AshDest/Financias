@@ -88,9 +88,9 @@
                     <li class="dropdown align-self-center d-inline-block">
                         <a href="#" class="nav-link" data-toggle="dropdown" aria-expanded="false"><i
                                 class="icon-bell h4"></i>
-                            <span class="badge badge-default"> <span class="ring">
+                            <span class="badge badge-default"><span class="ring">
                                 </span><span class="ring-point">
-                                </span> </span>
+                                </span></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right border   py-0">
                             <li>
