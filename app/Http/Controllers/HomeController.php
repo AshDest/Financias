@@ -38,4 +38,9 @@ class HomeController extends Controller
     {
         return view('pages.caissiers.edit', compact('ids'));
     }
+
+    public function changesmenus()
+    {
+        return view('pages.changes.menus');
+    }
 }

@@ -5,7 +5,7 @@
             <li class="dropdown active"><a href="#"><i class="icon-home mr-1"></i> Mouvement</a>
                 <ul>
                     <li class="active"><a href="index.html"><i class="icon-chart"></i> Dashboard</a></li>
-                    <li><a href="index-account.html"><i class="icon-refresh"></i> Change</a></li>
+                    <li><a href="{{ route('changesmenus') }}"><i class="icon-refresh"></i> Change</a></li>
                     <li><a href="index-analytic.html"><i class="icon-paper-plane"></i> Wester Union</a></li>
                     <li><a href="index-covid.html"><i class="icon-screen-smartphone"></i> Monnaie Electronique</a></li>
                     <li><a href="index-crypto.html"><i class="icon-layers"></i> Equity</a></li>
