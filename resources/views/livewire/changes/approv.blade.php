@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-12">
-        <form class="needs-validation" novalidate wire:submit.prevent="save">
+        <form class="needs-validation" novalidate wire:submit.prevent="approv">
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                     <label for="fournisseur">Fournisseur</label>
@@ -35,11 +35,6 @@
                         placeholder="Montant en Franc Congolais" required>
                     <span style="color: yellowgreen;">Valeur en USD : {{number_format($valeurUSD, 2).'
                         CDF'}}</span>
-                    {{-- @error('valeurUSD')
-                    <div class="invalid-feedback">
-                        <i class="fas fa-exclamation-triangle"></i>&nbsp;{{ $message }}
-                    </div>
-                    @enderror --}}
                 </div>
             </div>
             <div class="form-row">

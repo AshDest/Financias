@@ -2,11 +2,19 @@
 
 namespace App\Http\Livewire\Changes;
 
+use App\Models\Approvisionnement;
+use App\Models\Caissier;
 use App\Models\Taux;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithPagination;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class Menus extends Component
 {
+
+    use WithPagination;
+    use LivewireAlert;
 
     public $formapprovisionnement = null;
     public $formsortie = null;
@@ -17,8 +25,8 @@ class Menus extends Component
     public $tab4 = null;
 
     public $fournisseur;
-    public $montantusd;
-    public $montantcdf;
+    public $montantusd = 0;
+    public $montantcdf = 0;
 
     public $taux;
 
@@ -27,6 +35,8 @@ class Menus extends Component
 
     public $taux_jours = 0;
 
+    public $caisseCDF = 0;
+    public $caisseUSD = 0;
 
     public function shiftsection($val)
     {
@@ -48,7 +58,6 @@ class Menus extends Component
             $this->tab3 = 1;
         }
     }
-
     public function updatedMontantusd()
     {
         if ($this->montantusd) {
@@ -57,22 +66,68 @@ class Menus extends Component
             $this->valeurCDF = 0;
         }
     }
-
     public function updatedMontantcdf()
     {
         if ($this->montantcdf) {
-            $this->valeurUSD = $this->montantcdf / $this->taux_jours;
+            $this->valeurUSD = number_format($this->montantcdf / $this->taux_jours, 2);
         } else {
             $this->valeurUSD = 0;
         }
     }
-
     public function mount()
     {
         $this->formapprovisionnement = 1;
         $vars = Taux::orderby('created_at', 'DESC')->first();
         if ($vars) {
             $this->taux_jours = $vars->taux;
+        }
+    }
+    public function approv()
+    {
+        try {
+            if ($this->montantusd && $this->montantcdf) {
+                Approvisionnement::create([
+                    'fournisseur' => $this->fournisseur,
+                    'montantCDF' => $this->montantcdf,
+                    'valeurenCDF' => $this->valeurCDF,
+                    'montantUSD' => $this->montantusd,
+                    'valeurenUSD' => $this->valeurUSD,
+                    'taux' => $this->taux_jours,
+                    'caisse_id' => 1,
+                    // Auth::user()->caissier_id,
+                ])->save();
+                Caissier::find(Auth::user()->caissier_id)->fill([
+                    'montantCDF' => $this->caisseCDF + $this->montantcdf,
+                    'montantUSD' => $this->caisseUSD + $this->montantusd,
+                ])->save();
+            } elseif ($this->montantusd) {
+                Approvisionnement::create([
+                    'fournisseur' => $this->fournisseur,
+                    'valeurenCDF' => $this->valeurCDF,
+                    'montantUSD' => $this->montantusd,
+                    'taux' => $this->taux_jours,
+                    'caisse_id' => 1,
+                ])->save();
+                Caissier::find(Auth::user()->caissier_id)->fill([
+                    'montantUSD' => $this->caisseUSD + $this->montantusd,
+                ])->save();
+            } elseif ($this->montantcdf) {
+                Approvisionnement::create([
+                    'fournisseur' => $this->fournisseur,
+                    'montantCDF' => $this->montantcdf,
+                    'valeurenCDF' => $this->valeurCDF,
+                    'montantUSD' => $this->montantusd,
+                    'valeurenUSD' => $this->valeurUSD,
+                    'taux' => $this->taux_jours,
+                    'caisse_id' => 1,
+                ])->save();
+                Caissier::find(Auth::user()->caissier_id)->fill([
+                    'montantCDF' => $this->caisseCDF + $this->montantcdf,
+                ])->save();
+            }
+            $this->alert('success', 'Initialisation successful');
+        } catch (\Exception $e) {
+            $this->alert('warning', 'Echec d\'enregistrement: ' . $e->getMessage());
         }
     }
     public function render()

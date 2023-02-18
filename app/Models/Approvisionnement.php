@@ -11,7 +11,9 @@ class Approvisionnement extends Model
     protected $fillable = [
         'fournisseur',
         'montantCDF',
+        'valeurenCDF',
         'montantUSD',
+        'valeurenUSD',
         'taux',
         'caisse_id'
     ];

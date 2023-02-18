@@ -21,7 +21,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'caissier_id'
     ];
+
+    public function caissier()
+    {
+        return $this->belongsTo(Caissier::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
