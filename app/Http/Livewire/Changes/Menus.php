@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Changes;
 
+use App\Models\Taux;
 use Livewire\Component;
 
 class Menus extends Component
@@ -16,9 +17,15 @@ class Menus extends Component
     public $tab4 = null;
 
     public $fournisseur;
-    public $montant_approvCDF;
+    public $montantusd;
+    public $montantcdf;
+
     public $taux;
+
     public $valeurUSD;
+    public $valeurCDF;
+
+    public $taux_jours = 0;
 
 
     public function shiftsection($val)
@@ -42,11 +49,32 @@ class Menus extends Component
         }
     }
 
+    public function updatedMontantusd()
+    {
+        if ($this->montantusd) {
+            $this->valeurCDF = $this->montantusd * $this->taux_jours;
+        } else {
+            $this->valeurCDF = 0;
+        }
+    }
 
-    // public function mount()
-    // {
-    //     $this->formapprovisionnement = 1;
-    // }
+    public function updatedMontantcdf()
+    {
+        if ($this->montantcdf) {
+            $this->valeurUSD = $this->montantcdf / $this->taux_jours;
+        } else {
+            $this->valeurUSD = 0;
+        }
+    }
+
+    public function mount()
+    {
+        $this->formapprovisionnement = 1;
+        $vars = Taux::orderby('created_at', 'DESC')->first();
+        if ($vars) {
+            $this->taux_jours = $vars->taux;
+        }
+    }
     public function render()
     {
         return view('livewire.changes.menus');

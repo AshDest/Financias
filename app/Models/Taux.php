@@ -11,5 +11,7 @@ class Taux extends Model
 
     protected $fillable = [
         'taux',
+        'types',
+        'created_at'
     ];
 }
