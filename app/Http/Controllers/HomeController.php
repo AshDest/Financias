@@ -43,4 +43,8 @@ class HomeController extends Controller
     {
         return view('pages.changes.menus');
     }
+    public function users()
+    {
+        return view('pages.users.user');
+    }
 }
