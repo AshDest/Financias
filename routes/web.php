@@ -25,3 +25,7 @@ Route::get('/caissier', [App\Http\Controllers\HomeController::class, 'caissier']
 Route::get('/caissier/add', [App\Http\Controllers\HomeController::class, 'addcaissier'])->name('addcaissier');
 Route::get('/caissier/edit/{ids}', [App\Http\Controllers\HomeController::class, 'editcaissier'])->name('editcaissier');
 Route::get('/change', [App\Http\Controllers\HomeController::class, 'changesmenus'])->name('changesmenus');
+
+Route::get('/users', [App\Http\Controllers\HomeController::class, 'users'])->name('users');
+Route::get('/user/add', [App\Http\Controllers\HomeController::class, 'adduser'])->name('adduser');
+Route::get('/user/edit/{ids}', [App\Http\Controllers\HomeController::class, 'edituser'])->name('edituser');

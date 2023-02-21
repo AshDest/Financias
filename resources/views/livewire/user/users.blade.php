@@ -61,7 +61,9 @@
                                     $i++;
                                     @endphp</th>
                                 <td>{{$item->name}}</td>
-                                <td>{{$item->caissier->nom}} - {{$item->caissier->postnom}}</td>
+                                <td>@if ($item->caissier)
+                                    {{$item->caissier->nom}} - {{$item->caissier->postnom}}
+                                    @endif</td>
                                 <td width="10%">
                                     <a href="{{ route('editcaissier', ['ids'=>$item->id]) }}"
                                         class="badge outline-badge-dark" data-toggle="tooltip" data-placement="top"

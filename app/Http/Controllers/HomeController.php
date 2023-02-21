@@ -47,4 +47,12 @@ class HomeController extends Controller
     {
         return view('pages.users.user');
     }
+    public function adduser()
+    {
+        return view('pages.users.add');
+    }
+    public function edituser($ids)
+    {
+        return view('pages.users.edit', compact('ids'));
+    }
 }

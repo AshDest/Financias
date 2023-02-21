@@ -15,6 +15,7 @@
             <li class="dropdown"><a href="#"><i class="icon-grid mr-1"></i> Caisses</a>
                 <ul>
                     <li><a href="{{ route('caissier') }}"><i class="icon-people"></i> Caissiers</a></li>
+                    <li><a href="{{ route('users') }}"><i class="icon-refresh"></i> Utilisateurs</a></li>
                     {{-- <li><a href="index-account.html"><i class="icon-refresh"></i> Change</a></li>
                     <li><a href="index-analytic.html"><i class="icon-paper-plane"></i> Wester Union</a></li>
                     <li><a href="index-covid.html"><i class="icon-screen-smartphone"></i> Monnaie Electronique</a></li>
