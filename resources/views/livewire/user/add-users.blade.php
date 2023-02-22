@@ -37,7 +37,20 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="password" class="col-sm-4 col-form-label">Mot de
+                                            <label for="password_confirmation" class="col-sm-4 col-form-label">Mot de
+                                                passe</label>
+                                            <div class="col-sm-8">
+                                                <input type="password" class="form-control" id="password_confirmation"
+                                                    wire:model="password_confirmation" name="password_confirmation"
+                                                    placeholder="confirmer le mot de passe">
+                                                @error('password_confirmation')
+                                                <i class="fas fa-exclamation-triangle" style="color: red; "></i>&nbsp;
+                                                {{ $message }}
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="password" class="col-sm-4 col-form-label"> Confirmer mot de
                                                 passe</label>
                                             <div class="col-sm-8">
                                                 <input type="password"
@@ -50,20 +63,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="password_confirmation" class="col-sm-4 col-form-label">Confirme
-                                                le
-                                                mot passe</label>
-                                            <div class="col-sm-8">
-                                                <input type="password" class="form-control" id="password_confirmation"
-                                                    wire:model="password_confirmation" name="password_confirmation"
-                                                    placeholder="confirmer le mot de passe">
-                                                @error('password_confirmation')
-                                                <i class="fas fa-exclamation-triangle" style="color: red; "></i>&nbsp;
-                                                {{ $message }}
-                                                @enderror
-                                            </div>
-                                        </div>
+
                                         <div class="form-group row">
                                             <label for="caissier_id" class="col-sm-4 col-form-label">Caissier</label>
                                             <div class="col-sm-8">
