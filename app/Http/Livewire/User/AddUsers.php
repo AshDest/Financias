@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\User;
 
+use App\Models\Caissier;
 use App\Models\User;
 use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -52,6 +53,7 @@ class AddUsers extends Component
 
     public function render()
     {
-        return view('livewire.user.add-users');
+        $caissiers = Caissier::all();
+        return view('livewire.user.add-users', ['caissiers' => $caissiers]);
     }
 }

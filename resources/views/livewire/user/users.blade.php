@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="col-3 my-auto">
-                            <a href="{{ route('addcaissier') }}" class="btn btn-outline-dark col-12"><i
+                            <a href="{{ route('adduser') }}" class="btn btn-outline-dark col-12"><i
                                     class="icon-plus"></i>
                                 &ensp;&ensp;Ajouter Nouveau Utilisateur</a>
                         </div>

@@ -55,9 +55,7 @@
     @include('layouts.partials._side')
     <!-- END: Main Menu-->
     <!-- START: Main Content-->
-    <main>
-        @yield('content')
-    </main>
+    @yield('content')
     <!-- END: Content-->
     <!-- START: Footer-->
     <footer class="site-footer">
