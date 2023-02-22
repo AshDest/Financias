@@ -10,12 +10,13 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 class AddUsers extends Component
 {
     use LivewireAlert;
-    public $users, $name, $email, $password, $caissier_id;
+    public $users, $name, $email, $password, $caissier_id, $password_confirmation;
 
     protected $rules = [
         'name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:users,email,except,id',
-        'password' => 'nullable|string|min:8|confirmed',
+        'password' => 'required|string|min:8|confirmed',
+        'password_confirmation' => 'required|string|min:8|max:255',
         'caissier_id' => 'required|integer',
     ];
 
@@ -33,8 +34,14 @@ class AddUsers extends Component
         'caissier_id.required' => 'Le champ caissier est obligatoire.',
         'caissier_id.integer' => 'Le champ caissier doit être un nombre entier.',
     ];
+    // realtime validation
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
     public function save()
     {
+        $this->validate();
         try {
             User::create([
                 'name' => $this->name,

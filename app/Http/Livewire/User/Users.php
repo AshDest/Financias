@@ -15,6 +15,7 @@ class Users extends Component
                 'users' => User::where('name', 'LIKE', '%' . $this->reseach . '%')
                     ->orwhere('email', 'LIKE', '%' . $this->reseach . '%')
                     ->orwhere('password', 'LIKE', '%' . $this->reseach . '%')
+                    ->where('caissier_id' == 1)
                     ->paginate($this->page_active)
             ]);
         } else {
