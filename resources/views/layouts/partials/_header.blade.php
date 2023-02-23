@@ -146,7 +146,20 @@
                         </a>
 
                         <div class="dropdown-menu border dropdown-menu-right p-0">
-                            <a href="" class="dropdown-item px-2 align-self-center d-flex">
+                            <a href="" class="dropdown-item px-2 align-self-center d-flex" style="color: black; ">
+                                <span class="icon-pencil mr-2 h6 mb-0"></span> Modifier Profile</a>
+                            <div class="dropdown-divider"></div>
+
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                class="dropdown-item px-2 text-danger align-self-center d-flex" style="color: black; ">
+                                <span class="icon-logout mr-2 h6  mb-0" style="color: black;"></span>
+                                <span style="color: black; ">Déconnexion</span>
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                            {{-- <a href="" class="dropdown-item px-2 align-self-center d-flex">
                                 <span class="icon-pencil mr-2 h6 mb-0"></span> Modifier Profile</a>
                             <a href="" class="dropdown-item px-2 align-self-center d-flex">
                                 <span class="icon-user mr-2 h6 mb-0"></span> Voir Profile</a>
@@ -159,7 +172,7 @@
                                 <span class="icon-settings mr-2 h6 mb-0"></span> Account Settings</a>
                             <div class="dropdown-divider"></div>
                             <a href="" class="dropdown-item px-2 text-danger align-self-center d-flex">
-                                <span class="icon-logout mr-2 h6  mb-0"></span> Sign Out</a>
+                                <span class="icon-logout mr-2 h6  mb-0"></span> Sign Out</a> --}}
                         </div>
 
                     </li>

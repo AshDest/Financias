@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('approvisionnements', function (Blueprint $table) {
             $table->id();
             $table->string('fournisseur')->nullable();
-            $table->double('montantCDF')->default('0');
-            $table->double('valeurenCDF')->default('0');
-            $table->double('montantUSD')->default('0');
-            $table->double('valeurenUSD')->default('0');
+            $table->decimal('montantCDF', 10, 2)->default('0');
+            $table->decimal('valeurenCDF', 10, 2)->default('0');
+            $table->decimal('montantUSD', 10, 2)->default('0');
+            $table->decimal('valeurenUSD', 10, 2)->default('0');
             $table->double('taux')->default('0');
             $table->unsignedBigInteger('caisse_id');
             $table->foreign('caisse_id')->references('id')->on('caisses')->onDelete('cascade')->onUpdate('cascade');
