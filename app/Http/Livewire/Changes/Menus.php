@@ -36,6 +36,7 @@ class Menus extends Component
 
     public $taux_jours = 0;
 
+    // return the value of caisse
     public $caisseCDF = 0;
     public $caisseUSD = 0;
 
@@ -82,53 +83,58 @@ class Menus extends Component
         if ($vars) {
             $this->taux_jours = $vars->taux;
         }
+        $caiss = Caissier::where('id', Auth::user()->caissier_id)->first();
+        if ($caiss) {
+            $this->caisseUSD = $caiss->montantUSD;
+            $this->caisseCDF = $caiss->montantCDF;
+        }
     }
     public function approv()
     {
-        // try {
-        if ($this->montantusd && $this->montantcdf) {
-            Approvisionnement::create([
-                'fournisseur' => $this->fournisseur,
-                'montantCDF' => $this->montantcdf,
-                'valeurenCDF' => $this->valeurCDF,
-                'montantUSD' => $this->montantusd,
-                'valeurenUSD' => $this->valeurUSD,
-                'taux' => $this->taux_jours,
-                'caisse_id' => 1,
-                // Auth::user()->caissier_id,
-            ])->save();
-            Caissier::find(Auth::user()->caissier_id)->fill([
-                'montantCDF' => $this->caisseCDF + $this->montantcdf,
-                'montantUSD' => $this->caisseUSD + $this->montantusd,
-            ])->save();
-        } elseif ($this->montantusd) {
-            Approvisionnement::create([
-                'fournisseur' => $this->fournisseur,
-                'valeurenCDF' => $this->valeurCDF,
-                'montantUSD' => $this->montantusd,
-                'taux' => $this->taux_jours,
-                'caisse_id' => 1,
-            ])->save();
-            Caissier::find(Auth::user()->caissier_id)->fill([
-                'montantUSD' => $this->caisseUSD + $this->montantusd,
-            ])->save();
-        } elseif ($this->montantcdf) {
-            Approvisionnement::create([
-                'fournisseur' => $this->fournisseur,
-                'montantCDF' => $this->montantcdf,
-                'valeurenUSD' => $this->valeurUSD,
-                'taux' => $this->taux_jours,
-                'caisse_id' => 1,
-            ])->save();
-            Caissier::find(Auth::user()->caissier_id)->fill([
-                'montantCDF' => $this->caisseCDF + $this->montantcdf,
-            ])->save();
+        try {
+            if ($this->montantusd && $this->montantcdf) {
+                Approvisionnement::create([
+                    'fournisseur' => $this->fournisseur,
+                    'montantCDF' => $this->montantcdf,
+                    'valeurenCDF' => $this->valeurCDF,
+                    'montantUSD' => $this->montantusd,
+                    'valeurenUSD' => $this->valeurUSD,
+                    'taux' => $this->taux_jours,
+                    'caisse_id' => 1,
+                    // Auth::user()->caissier_id,
+                ])->save();
+                Caissier::find(Auth::user()->caissier_id)->fill([
+                    'montantCDF' => $this->caisseCDF + $this->montantcdf,
+                    'montantUSD' => $this->caisseUSD + $this->montantusd,
+                ])->save();
+            } elseif ($this->montantusd) {
+                Approvisionnement::create([
+                    'fournisseur' => $this->fournisseur,
+                    'valeurenCDF' => $this->valeurCDF,
+                    'montantUSD' => $this->montantusd,
+                    'taux' => $this->taux_jours,
+                    'caisse_id' => 1,
+                ])->save();
+                Caissier::find(Auth::user()->caissier_id)->fill([
+                    'montantUSD' => $this->caisseUSD + $this->montantusd,
+                ])->save();
+            } elseif ($this->montantcdf) {
+                Approvisionnement::create([
+                    'fournisseur' => $this->fournisseur,
+                    'montantCDF' => $this->montantcdf,
+                    'valeurenUSD' => $this->valeurUSD,
+                    'taux' => $this->taux_jours,
+                    'caisse_id' => 1,
+                ])->save();
+                Caissier::find(Auth::user()->caissier_id)->fill([
+                    'montantCDF' => $this->caisseCDF + $this->montantcdf,
+                ])->save();
+            }
+            $this->alert('success', 'Initialisation successful');
+            $this->clearVariables();
+        } catch (\Exception $e) {
+            $this->alert('warning', 'Echec d\'enregistrement: ' . $e->getMessage());
         }
-        $this->alert('success', 'Initialisation successful');
-        $this->clearVariables();
-        // } catch (\Exception $e) {
-        //     $this->alert('warning', 'Echec d\'enregistrement: ' . $e->getMessage());
-        // }
     }
     public function clearVariables()
     {
