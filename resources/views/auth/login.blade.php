@@ -56,7 +56,7 @@
                     </div>
 
                     <div class="form-group mb-0">
-                        <button class="btn btn-primary col-md-12" type="submit">
+                        <button class="btn btn-success col-md-12" type="submit">
                             <i class="icon-login" style="margin-right: 12px; "></i>Se connecter </button>
                     </div>
 
