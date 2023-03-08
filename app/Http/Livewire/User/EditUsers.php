@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\User;
 
+use App\Models\Caisse;
+use App\Models\User;
 use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
@@ -9,6 +11,8 @@ class EditUsers extends Component
 {
     use LivewireAlert;
     public $users, $name, $email, $password, $caissier_id, $password_confirmation;
+
+    public $ids;
 
     protected $rules = [
         'name' => 'required|string|max:255',
@@ -37,8 +41,27 @@ class EditUsers extends Component
     {
         $this->validateOnly($propertyName);
     }
+
+    public function save()
+    {
+        User::find($this->ids)->fill([
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => bcrypt($this->password),
+            'caissier_id' => $this->caissier_id,
+        ])->save();
+    }
+
+    public function mount()
+    {
+        $vars = User::find($this->ids);
+        $this->name = $vars->name;
+        $this->email = $vars->email;
+        $this->caissier_id = $vars->caissier_id;
+    }
     public function render()
     {
-        return view('livewire.user.edit-users');
+        $caissiers = Caisse::all();
+        return view('livewire.user.edit-users', ['caissiers' => $caissiers]);
     }
 }

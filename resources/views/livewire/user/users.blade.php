@@ -23,20 +23,6 @@
                                                 wire:model="reseach" />
                                         </div>
                                     </div>
-                                    <div class="col-2 my-auto">
-                                        <div class="input-group">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text bg-transparent border-left-0"><i
-                                                        class="fas fa-utensil-spoon"></i></span>
-                                            </div>
-                                            <select class="form-control form-control-sm" id="filterByOrder"
-                                                style="background-color: #f7f9fa; ">
-                                                <option> Affichage</option>
-                                                <option value="A-Z"> A - Z</option>
-                                                <option value="Z-A"> Z - A</option>
-                                            </select>
-                                        </div>
-                                    </div>
                                     <div class="col-3 my-auto">
                                         <a href="{{ route('adduser') }}" class="btn btn-outline-dark col-12"><i
                                                 class="icon-plus"></i>
@@ -71,7 +57,7 @@
                                                 SUPER ADMIN
                                                 @endif</td>
                                             <td width="10%">
-                                                <a href="{{ route('editcaissier', ['ids'=>$item->id]) }}"
+                                                <a href="{{ route('edituser', ['ids'=>$item->id]) }}"
                                                     class="badge outline-badge-dark" data-toggle="tooltip"
                                                     data-placement="top" title="Modifier Compte Caissier"
                                                     style="cursor:pointer;">
